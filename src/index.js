@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 
-const url = "https://www.youtube.com/@DeveloperDeck101/streams";
+const url = "https://www.youtube.com/@TheDigitalBrickLayer/streams";
 
 async function robo() {
   const browser = await puppeteer.launch(); // inicia o navegador
@@ -15,6 +15,7 @@ async function robo() {
     "badge-shape .badge-shape-wiz__text",
     (element) => [...new Set(element.map((el) => el.textContent))]
   );
+ 
 
   const totalHours = [];
   const totalMinutes = [];
@@ -23,10 +24,27 @@ async function robo() {
   for (let i = 0; i < time.length; i++) {
     let [hours, minutes, seconds] = time[i].split(":").map(Number);
 
+    if (seconds === undefined) {
+      seconds = 0;
+    }
+
+    if (minutes === undefined) {
+      minutes = 0; 
+    }
+    if(hours === undefined){
+      hours = 0;
+    };
+    
     totalHours.push(hours);
     totalMinutes.push(minutes);
     totalSeconds.push(seconds);
   }
+
+
+  
+
+
+
 
   let totalHoras = 0;
   let totalMinutos = 0;
